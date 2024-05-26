@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Estoque</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Estoque</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div id="container">
+    <div *ngIf="meusDados.length === 0">
+      <p>Carregando dados...</p>
+    </div>
+    <div *ngIf="meusDados.length > 0">
+      <table>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Preço</th>
+            <th>Quantidade</th>
+            <th>Ações</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dado of meusDados">
+            <td>{{ dado.nome_produto || 'Produto não disponível' }}</td>
+            <td>{{ dado.preco | currency }}</td>
+            <td>{{ dado.quantidade }}</td>
+            <td>
+              <ion-button size="small" (click)="exibirAlertaEditarProduto(dado)"><ion-icon name="pencil-outline"></ion-icon></ion-button>
+            </td>
+            <td>
+              <ion-button size="small" (click)="exibirAlertaExcluirProduto(dado)"><ion-icon name="trash-outline"></ion-icon></ion-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <ion-button expand="block" (click)="exibirAlertaAdicionarProduto()" style="margin-top: 20px;">Adicionar Produto</ion-button>
+    </div>
+  </div>
+</ion-content>

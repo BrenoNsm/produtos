@@ -11,6 +11,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'estoque',
+    loadChildren: () => import('./estoque/estoque.module').then( m => m.EstoquePageModule)
+  },
 ];
 
 @NgModule({
